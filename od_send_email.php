@@ -233,6 +233,11 @@ class Od_send_email extends Module
         return $this->displayTpl();
     }
 
+    public function hookDisplayCustomerLoginFormAfter()
+    {
+        return $this->displayTpl();
+    }
+
     public function hookActionFrontControllerSetMedia()
     {
         if ($this->context->controller->php_self != "my-account" && $this->context->controller->php_self != "authentication") {
