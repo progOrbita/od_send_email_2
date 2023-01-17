@@ -36,4 +36,14 @@ class Od_send_email extends Module
             ]
         ];
     }
+
+    public function install()
+    {
+        return parent::install()
+            && $this->registerHook('actionFrontControllerSetMedia')
+            && $this->registerHook('actionAdminControllerSetMedia')
+            && $this->registerHook('displayCustomerAccount')
+            && $this->registerHook('displayCustomerLoginFormAfter')
+            && empty($this->updateFieldsValue());
+    }
 }
