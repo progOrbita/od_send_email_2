@@ -168,6 +168,45 @@ class Od_send_email extends Module
         return $this->displayConfirmation($this->l('Correo enviado'));
     }
 
+    public function displayForm()
+    {
+        $form = [[
+            'form' => [
+                'legend' => [
+                    'title' => $this->l('Envio de correo'),
+                ],
+                'input' => [
+                    [
+                        'type' => 'text',
+                        'label' => $this->fields_values['_OD_SEND_EMAIL_1_']['translate'],
+                        'name' => '_OD_SEND_EMAIL_1_',
+                        'size' => 20,
+                        'required' => true,
+                    ],
+                    [
+                        'type' => 'text',
+                        'label' => $this->fields_values['_OD_SEND_EMAIL_2_']['translate'],
+                        'name' => '_OD_SEND_EMAIL_2_',
+                        'size' => 20,
+                        'required' => true,
+                    ]
+                ],
+                'submit' => [
+                    'title' => $this->l('Enviar'),
+                    'class' => 'btn btn-default pull-right'
+                ],
+            ],
+        ]];
+
+        $helper = new HelperForm();
+        $helper->token = Tools::getAdminTokenLite('AdminModules');
+        $helper->currentIndex = AdminController::$currentIndex . '&' . http_build_query(['configure' => $this->name]);
+        $helper->submit_action = 'submit' . $this->name;
+        $helper->fields_value = $this->getFieldsValue();
+
+        return $helper->generateForm($form);
+    }
+
     /**
      * Get fields values of helper form of configuration
      * 
