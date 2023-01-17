@@ -250,4 +250,19 @@ class Od_send_email extends Module
         );
     }
 
+    /**
+     * display the tpl
+     * 
+     * @return string
+     */
+
+    public function displayTpl()
+    {
+        $this->context->smarty->assign([
+            'button' => $this->l('Enviar email'),
+            'miVariable' => Context::getContext()->link->getModuleLink('od_send_email', 'sender', array())
+        ]);
+
+        return $this->display(__FILE__, 'od_send_email.tpl');
+    }
 }
