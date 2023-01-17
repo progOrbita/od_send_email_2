@@ -60,4 +60,21 @@ class Od_send_email extends Module
     {
         return $this->postProcess($this->context->employee->id_lang, $this->context->employee->firstname) . $this->displayForm();
     }
+    /**
+     * Update fields value
+     * 
+     * @return string error
+     */
+    public function updateFieldsValue(): string
+    {
+        foreach ($this->fields_values as $key => $value) {
+            if ($this->validateMail($key, $value['default'])) {
+                continue;
+            }
+
+            return $this->displayError($this->l('Error al actualizar ' . $value['translate']));
+        }
+
+        return '';
+    }
 }
