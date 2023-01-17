@@ -263,6 +263,11 @@ class Od_send_email extends Module
                 'priority' => 1000,
             ]
         );
+
+        // Otra forma de asignar variables globales a js
+        // Media::addJsDef([
+        //     'miVariable' => Context::getContext()->link->getModuleLink('od_send_email', 'sender', array())
+        // ]);
     }
 
     /**

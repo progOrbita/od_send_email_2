@@ -1,5 +1,3 @@
-console.log(window.od_send);
-
 /**
  * envio de name y mail para hacer envio de mail
  *
