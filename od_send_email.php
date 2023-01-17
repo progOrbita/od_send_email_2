@@ -77,4 +77,34 @@ class Od_send_email extends Module
 
         return '';
     }
+    /**
+     * send mail
+     * 
+     * @param int $lang 
+     * @param string $name of employee customer
+     * 
+     * @return string
+     */
+
+    public function mailSender($lang, $name): string
+    {
+        if (!Mail::send(
+            $lang,
+            'plantilla',
+            'prueba mail',
+            array('{$name}' => $name),    // este array le pasa variables al tpl en este caso no lo utilizamos porq utilizamos variables globales del tpl
+            Configuration::get('_OD_SEND_EMAIL_2_'),
+            Null,
+            Configuration::get('_OD_SEND_EMAIL_1_'),
+            Null,
+            Null,
+            Null,
+            _PS_MODULE_DIR_ . 'od_send_email/mails'
+        )) {
+            return $this->displayError($this->l('Error al realizar el envio'));
+        }
+
+        return $this->displayConfirmation($this->l('Correo enviado'));
+    }
+
 }
