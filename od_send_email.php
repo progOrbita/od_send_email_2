@@ -49,4 +49,11 @@ class Od_send_email extends Module
             && $this->registerHook('displayCustomerLoginFormAfter')
             && empty($this->updateFieldsValue());
     }
+
+    public function uninstall()
+    {
+        return parent::uninstall()
+            && $this->deleteFieldsValue();
+    }
+
 }
