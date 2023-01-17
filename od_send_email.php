@@ -61,6 +61,24 @@ class Od_send_email extends Module
         return $this->postProcess($this->context->employee->id_lang, $this->context->employee->firstname) . $this->displayForm();
     }
     /**
+     * Delete fields value
+     * 
+     * @return bool
+     */
+    public function deleteFieldsValue(): bool
+    {
+        foreach ($this->fields_values as $key => $value) {
+            if (Configuration::deleteByName($key)) {
+                continue;
+            }
+
+            return false;
+        }
+
+        return true;
+    }
+
+    /**
      * Update fields value
      * 
      * @return string error
