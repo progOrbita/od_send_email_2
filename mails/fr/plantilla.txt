@@ -1,0 +1,6 @@
+Hola {$name} 
+
+Te he enviado un correo.
+
+Adiós
+
