@@ -18,7 +18,7 @@ $(document).on("click", ".od_sender", function () {
     dataType: "json",
     success: function (response) {
       $(".od_result").remove();
-      $(".od_sender").after("<p class='od_result'>"+ response.result +"</p>");
+      $(".od_sender").after("<div class='od_result'>"+ response.result +"</div>");
     },
   });
 });
