@@ -60,6 +60,29 @@ class Od_send_email extends Module
     {
         return $this->postProcess($this->context->employee->id_lang, $this->context->employee->firstname) . $this->displayForm();
     }
+
+    /**
+     * Post process
+     * 
+     * @param int $lang
+     * @param string $name of employee or customer
+     * 
+     * @return string
+     */
+    public function postProcess($lang, $name): string
+    {
+        if (!Tools::isSubmit('submit' . $this->name)) {
+            return '';
+        }
+
+        $result = $this->updateFieldsValue();
+        if (!empty($result)) {
+            return $result;
+        }
+
+        return $this->mailSender($lang, $name);
+    }
+
     /**
      * Delete fields value
      * 
