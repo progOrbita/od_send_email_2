@@ -5,6 +5,9 @@ if (!defined('_PS_VERSION_')) {
 
 class Od_send_email extends Module
 {
+
+    private $fields_values;
+
     public function __construct()
     {
         $this->name = 'od_send_email';
