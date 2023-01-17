@@ -223,4 +223,31 @@ class Od_send_email extends Module
 
         return $data;
     }
+    public function hookActionFrontControllerSetMedia()
+    {
+        if ($this->context->controller->php_self != "my-account" && $this->context->controller->php_self != "authentication") {
+            return;
+        }
+
+        $this->context->controller->registerStylesheet(
+            'od_send_email-style',
+            $this->_path . 'views/css/od_send_email.css',
+            [
+                'server' => 'remote',
+                'media' => 'all',
+                'priority' => 1000,
+            ]
+        );
+
+        $this->context->controller->registerJavascript(
+            'od_send_email-javascript',
+            $this->_path . 'views/js/od_send_email.js',
+            [
+                'server' => 'remote',
+                'position' => 'bottom',
+                'priority' => 1000,
+            ]
+        );
+    }
+
 }
