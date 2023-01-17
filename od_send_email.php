@@ -56,4 +56,8 @@ class Od_send_email extends Module
             && $this->deleteFieldsValue();
     }
 
+    public function getContent()
+    {
+        return $this->postProcess($this->context->employee->id_lang, $this->context->employee->firstname) . $this->displayForm();
+    }
 }
