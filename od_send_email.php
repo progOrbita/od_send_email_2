@@ -148,4 +148,20 @@ class Od_send_email extends Module
         return $this->displayConfirmation($this->l('Correo enviado'));
     }
 
+    /**
+     * Get fields values of helper form of configuration
+     * 
+     * @return array
+     */
+
+    private function getFieldsValue(): array
+    {
+        $data = [];
+
+        foreach ($this->fields_values as $key => $value) {
+            $data[$key] = Tools::getValue($key, Configuration::get($key));
+        }
+
+        return $data;
+    }
 }
