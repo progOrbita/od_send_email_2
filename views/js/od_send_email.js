@@ -3,7 +3,7 @@ console.log(window.od_send);
 /**
  * envio de name y mail para hacer envio de mail
  *
- * @return bool result
+ * @return string result
  */
 
 $(document).on("click", ".od_sender", function () {
