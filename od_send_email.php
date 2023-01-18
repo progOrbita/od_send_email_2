@@ -58,29 +58,21 @@ class Od_send_email extends Module
 
     public function getContent()
     {
-        return $this->postProcess($this->context->employee->id_lang, $this->context->employee->firstname) . $this->displayForm();
+        return $this->postProcess() . $this->displayForm();
     }
 
     /**
      * Post process
      * 
-     * @param int $lang
-     * @param string $name of employee or customer
-     * 
      * @return string
      */
-    public function postProcess($lang, $name): string
+    public function postProcess(): string
     {
         if (!Tools::isSubmit('submit' . $this->name)) {
             return '';
         }
 
-        $result = $this->updateFieldsValue();
-        if (!empty($result)) {
-            return $result;
-        }
-
-        return $this->mailSender($lang, $name);
+        return $this->updateFieldsValue();
     }
 
     /**
@@ -116,7 +108,7 @@ class Od_send_email extends Module
             return $this->displayError($this->l('Error al actualizar ' . $value['translate']));
         }
 
-        return '';
+        return $this->displayConfirmation($this->l('Datos actualizados'));
     }
 
     /**
