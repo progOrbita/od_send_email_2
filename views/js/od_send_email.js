@@ -6,12 +6,12 @@
 
 $(document).on("click", ".od_sender", function () {
   let data = {
-    nombre: prestashop.customer["firstname"],
+    nombre: window.name,
     ajax: 1
   };
   $.ajax({
     type: "POST",
-    url: window.od_send,
+    url: window.od_send_url,
     data: data,
     dataType: "json",
     success: function (response) {
