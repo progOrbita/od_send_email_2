@@ -301,7 +301,7 @@ class Od_send_email extends Module
         }
 
         Media::addJsDef([
-            'name' => $this->l($name),
+            'name' => $name,
             'od_send_url' => Context::getContext()->link->getModuleLink('od_send_email', 'sender', array())
         ]);
     }
