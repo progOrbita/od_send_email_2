@@ -265,10 +265,7 @@ class Od_send_email extends Module
             ]
         );
 
-        // Otra forma de asignar variables globales a js
-        // Media::addJsDef([
-        //     'miVariable' => Context::getContext()->link->getModuleLink('od_send_email', 'sender', array())
-        // ]);
+        $this->setJSVars($this->context->customer->firstname);
     }
 
     /**
@@ -281,7 +278,6 @@ class Od_send_email extends Module
     {
         $this->context->smarty->assign([
             'button' => $this->l('Enviar email'),
-            'miVariable' => Context::getContext()->link->getModuleLink('od_send_email', 'sender', array())
         ]);
 
         return $this->display(__FILE__, 'od_send_email.tpl');
