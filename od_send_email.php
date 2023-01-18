@@ -287,6 +287,12 @@ class Od_send_email extends Module
         return $this->display(__FILE__, 'od_send_email.tpl');
     }
 
+    public function hookActionAdminControllerSetMedia()
+    {
+        $this->context->controller->addJS($this->_path . 'views/js/od_send_email.js');
+        $this->setJSVars($this->context->employee->firstname);
+    }
+
     /**
      * set js vars
      * 
