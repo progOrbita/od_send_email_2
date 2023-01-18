@@ -297,7 +297,7 @@ class Od_send_email extends Module
     public function setJSVars($name)
     {
         if(empty($name)){
-            $name="Anónimo";
+            $name=$this->l("Anónimo");
         }
 
         Media::addJsDef([
