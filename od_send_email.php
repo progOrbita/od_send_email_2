@@ -181,10 +181,19 @@ class Od_send_email extends Module
                         'name' => '_OD_SEND_EMAIL_2_',
                         'size' => 20,
                         'required' => true,
+                    ],
+
+                ],
+                'buttons' => [
+                    [
+                        'title' => $this->l('Enviar'),
+                        'class' => 'btn btn-default pull-right od_sender',
+                        'icon' => 'process-icon-save',
+                        'type' => 'button'
                     ]
                 ],
                 'submit' => [
-                    'title' => $this->l('Enviar'),
+                    'title' => $this->l('Guardar'),
                     'class' => 'btn btn-default pull-right'
                 ],
             ],
