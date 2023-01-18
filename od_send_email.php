@@ -286,4 +286,21 @@ class Od_send_email extends Module
 
         return $this->display(__FILE__, 'od_send_email.tpl');
     }
+
+    /**
+     * set js vars
+     * 
+     * @param string $name 
+     */
+    public function setJSVars($name)
+    {
+        if(empty($name)){
+            $name="Anónimo";
+        }
+
+        Media::addJsDef([
+            'name' => $this->l($name),
+            'od_send_url' => Context::getContext()->link->getModuleLink('od_send_email', 'sender', array())
+        ]);
+    }
 }
