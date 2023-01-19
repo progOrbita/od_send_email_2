@@ -300,14 +300,20 @@ class Od_send_email extends Module
      * 
      * @param string $name 
      */
-    public function setJSVars($name)
+
+    public function setJSVars($name, $mail)
     {
-        if(empty($name)){
-            $name=$this->l("Anónimo");
+        if (empty($name)) {
+            $name = $this->l("Anónimo");
+        }
+
+        if (empty($mail)) {
+            $mail = Configuration::get('_OD_SEND_EMAIL_FROM_');
         }
 
         Media::addJsDef([
             'name' => $name,
+            'mail' => $mail,
             'od_send_url' => Context::getContext()->link->getModuleLink('od_send_email', 'sender', array())
         ]);
     }
