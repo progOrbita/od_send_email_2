@@ -7,6 +7,7 @@
 $(document).on("click", ".od_sender", function () {
   let data = {
     nombre: window.name,
+    mail: window.mail,
     ajax: 1
   };
   $.ajax({
