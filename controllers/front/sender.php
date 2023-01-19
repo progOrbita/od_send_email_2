@@ -9,8 +9,19 @@ class Od_Send_EmailSenderModuleFrontController extends ModuleFrontController
 {
     public function postProcess()
     {
-        if (!Tools::getIsset('nombre') || empty(Tools::getValue('nombre'))) {
-            echo json_encode(['result' => false]);
+        $this->validateField('nombre');
+        $this->validateField('mail');
+
+    /**
+     * function to validate fields value 
+     * 
+     * @param mixed param 
+     */
+    
+    public function validateField($param)
+    {
+        if (!Tools::getIsset($param) || empty(Tools::getValue($param))) {
+            echo json_encode(['result' => "Parametro de ajax erroneo: " . $param]);
             die;
         }
 
