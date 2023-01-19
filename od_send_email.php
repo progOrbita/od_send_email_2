@@ -47,7 +47,7 @@ class Od_send_email extends Module
             && $this->registerHook('actionAdminControllerSetMedia')
             && $this->registerHook('displayCustomerAccount')
             && $this->registerHook('displayCustomerLoginFormAfter')
-            && empty($this->updateFieldsValue());
+            && empty($this->updateFieldsValue(true));
     }
 
     public function uninstall()
@@ -96,9 +96,11 @@ class Od_send_email extends Module
     /**
      * Update fields value
      * 
+     * @param bool is_install
+     * 
      * @return string error
      */
-    public function updateFieldsValue(): string
+    public function updateFieldsValue($is_install = false): string
     {
         foreach ($this->fields_values as $key => $value) {
             if ($this->validateMail($key, $value['default'])) {
@@ -106,6 +108,10 @@ class Od_send_email extends Module
             }
 
             return $this->displayError($this->l('Error al actualizar ' . $value['translate']));
+        }
+
+        if ($is_install) {
+            return '';
         }
 
         return $this->displayConfirmation($this->l('Datos actualizados'));
