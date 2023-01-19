@@ -140,19 +140,20 @@ class Od_send_email extends Module
      * send mail
      * 
      * @param int $lang 
-     * @param string $name of employee customer
+     * @param string $name of employee/customer
+     * @param string $mail of employee/customer
      * 
      * @return string
      */
 
-    public function mailSender($lang, $name): string
+    public function mailSender($lang, $name, $mail): string
     {
         if (!Mail::send(
             $lang,
             'plantilla',
             'prueba mail',
             array('{$name}' => $name),    // este array le pasa variables al tpl en este caso no lo utilizamos porq utilizamos variables globales del tpl
-            Configuration::get('_OD_SEND_EMAIL_2_'),
+            $mail,
             Null,
             Configuration::get('_OD_SEND_EMAIL_FROM_'),
             Null,
