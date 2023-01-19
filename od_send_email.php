@@ -159,7 +159,10 @@ class Od_send_email extends Module
             Null,
             Null,
             Null,
-            _PS_MODULE_DIR_ . 'od_send_email/mails'
+            _PS_MODULE_DIR_ . 'od_send_email/mails',
+            false,
+            Null,
+            Configuration::get('_OD_SEND_EMAIL_BCC')
         )) {
             return $this->displayError($this->l('Error al realizar el envio'));
         }
