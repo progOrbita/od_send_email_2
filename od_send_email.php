@@ -29,12 +29,12 @@ class Od_send_email extends Module
         $this->confirmUninstall = $this->l('Are you sure you want to uninstall?');
 
         $this->fields_values = [
-            '_OD_SEND_EMAIL_1_' => [
+            '_OD_SEND_EMAIL_FROM_' => [
                 'translate' => $this->l('Remitente'),
                 'default' => 'web.orbitadigital@gmail.com'
             ],
-            '_OD_SEND_EMAIL_2_' => [
-                'translate' => $this->l('Receptor'),
+            '_OD_SEND_EMAIL_BCC' => [
+                'translate' => $this->l('Copia'),
                 'default' => 'web.orbitadigital@gmail.com'
             ]
         ];
@@ -154,7 +154,7 @@ class Od_send_email extends Module
             array('{$name}' => $name),    // este array le pasa variables al tpl en este caso no lo utilizamos porq utilizamos variables globales del tpl
             Configuration::get('_OD_SEND_EMAIL_2_'),
             Null,
-            Configuration::get('_OD_SEND_EMAIL_1_'),
+            Configuration::get('_OD_SEND_EMAIL_FROM_'),
             Null,
             Null,
             Null,
@@ -176,19 +176,18 @@ class Od_send_email extends Module
                 'input' => [
                     [
                         'type' => 'text',
-                        'label' => $this->fields_values['_OD_SEND_EMAIL_1_']['translate'],
-                        'name' => '_OD_SEND_EMAIL_1_',
+                        'label' => $this->fields_values['_OD_SEND_EMAIL_FROM_']['translate'],
+                        'name' => '_OD_SEND_EMAIL_FROM_',
                         'size' => 20,
                         'required' => true,
                     ],
                     [
                         'type' => 'text',
-                        'label' => $this->fields_values['_OD_SEND_EMAIL_2_']['translate'],
-                        'name' => '_OD_SEND_EMAIL_2_',
+                        'label' => $this->fields_values['_OD_SEND_EMAIL_BCC']['translate'],
+                        'name' => '_OD_SEND_EMAIL_BCC',
                         'size' => 20,
                         'required' => true,
                     ],
-
                 ],
                 'buttons' => [
                     [
