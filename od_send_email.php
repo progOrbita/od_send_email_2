@@ -112,7 +112,7 @@ class Od_send_email extends Module
     public function updateFieldsValue($is_install = false): string
     {
         foreach ($this->fields_values as $key => $value) {
-            if ($this->validateMail($key, $value['default'])) {
+            if ($this->{$value['function']}($key, $value['default'])) {
                 continue;
             }
 
