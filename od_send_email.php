@@ -356,4 +356,36 @@ class Od_send_email extends Module
             'od_send_url' => Context::getContext()->link->getModuleLink('od_send_email', 'sender', array())
         ]);
     }
+
+    /**
+     * check if you can send email
+     * 
+     * @return bool 
+     */
+
+    public function checkDate()
+    {
+        if (empty(Configuration::get('_OD_SEND_EMAIL_LAST_DATE_'))) {
+            return true;
+        }
+
+        $date = explode(' ', date('d/M/Y h:i:s'));
+        $last_date = explode(' ', Configuration::get('_OD_SEND_EMAIL_LAST_DATE_'));
+        if ($date[0] != $last_date[0]) {
+            return true;
+        }
+
+        $hour = explode(':', $date[1]);
+        $last_hour = explode(':', $last_date[1]);
+        if ($hour[0] != $last_hour[0]) {
+            return true;
+        }
+
+        if (Configuration::get('_OD_SEND_EMAIL_CNT_') < Configuration::get('_OD_SEND_EMAIL_MAX_MAIL_')) {
+            return true;
+        }
+
+        return false;
+    }
+
 }
