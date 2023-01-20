@@ -201,7 +201,9 @@ class Od_send_email extends Module
             return $this->displayError($this->l('Error al realizar el envio'));
         }
 
-        $this->updateConfiguration();
+        if (!$this->updateConfiguration()) {
+            return $this->displayError($this->l('Error al actualizar los datos'));
+        };
         return $this->displayConfirmation($this->l('Correo enviado'));
     }
 
@@ -409,7 +411,14 @@ class Od_send_email extends Module
 
     public function updateConfiguration()
     {
-        Configuration::updateValue('_OD_SEND_EMAIL_CNT_', Configuration::get('_OD_SEND_EMAIL_CNT_') + 1);
-        Configuration::updateValue('_OD_SEND_EMAIL_LAST_DATE_', date('d/M/Y h:i:s'));
+        if (!Configuration::updateValue('_OD_SEND_EMAIL_CNT_', Configuration::get('_OD_SEND_EMAIL_CNT_') + 1)) {
+            return false;
+        }
+
+        if (!Configuration::updateValue('_OD_SEND_EMAIL_LAST_DATE_', date('Y/M/d h:i:s'))) {
+            return false;
+        }
+
+        return true;
     }
 }
