@@ -388,4 +388,13 @@ class Od_send_email extends Module
         return false;
     }
 
+    /**
+     * update module configuration when mail was send
+     */
+
+    public function updateConfiguration()
+    {
+        Configuration::updateValue('_OD_SEND_EMAIL_CNT_', Configuration::get('_OD_SEND_EMAIL_CNT_') + 1);
+        Configuration::updateValue('_OD_SEND_EMAIL_LAST_DATE_', date('d/M/Y h:i:s'));
+    }
 }
