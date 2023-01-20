@@ -380,38 +380,32 @@ class Od_send_email extends Module
         $date = explode(' ', date('Y/M/d h:i:s'));
         $last_date = explode(' ', Configuration::get('_OD_SEND_EMAIL_LAST_DATE_'));
         if ($date[0] != $last_date[0]) {
-            if (!Configuration::updateValue('_OD_SEND_EMAIL_CNT_', 0)) {
-                $this->check_date_error=$this->l('Error al actualizar los datos');
-                return false;
-            }
-            return true;
+            return $this->updateCNT(Configuration::get('_OD_SEND_EMAIL_CNT_') + 1, $this->l('dia'));
         }
 
         $hour = explode(':', $date[1]);
         $last_hour = explode(':', $last_date[1]);
         if ($hour[0] != $last_hour[0]) {
-            if (!Configuration::updateValue('_OD_SEND_EMAIL_CNT_', 0)) {
-                $this->check_date_error=$this->l('Error al actualizar los datos');
-                return false;
-            }
-            return true;
+            return $this->updateCNT(Configuration::get('_OD_SEND_EMAIL_CNT_') + 1, $this->l('hora'));
         }
-        
+
         if (Configuration::get('_OD_SEND_EMAIL_CNT_') < Configuration::get('_OD_SEND_EMAIL_MAX_MAIL_')) {
             return true;
         }
-        
-        $this->check_date_error=$this->l('Error límite de correos alcanzado');
+
+        $this->check_date_error = $this->l('Error límite de correos alcanzado');
         return false;
     }
 
     /**
      * update module configuration when mail was send
+     * 
+     * @return bool
      */
 
     public function updateConfiguration()
     {
-        if (!Configuration::updateValue('_OD_SEND_EMAIL_CNT_', Configuration::get('_OD_SEND_EMAIL_CNT_') + 1)) {
+        if (!$this->updateCNT(Configuration::get('_OD_SEND_EMAIL_CNT_') + 1)) {
             return false;
         }
 
