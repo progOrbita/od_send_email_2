@@ -374,7 +374,7 @@ class Od_send_email extends Module
             return true;
         }
 
-        $date = explode(' ', date('d/M/Y h:i:s'));
+        $date = explode(' ', date('Y/M/d h:i:s'));
         $last_date = explode(' ', Configuration::get('_OD_SEND_EMAIL_LAST_DATE_'));
         if ($date[0] != $last_date[0]) {
             return true;
