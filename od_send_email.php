@@ -199,6 +199,13 @@ class Od_send_email extends Module
                         'size' => 20,
                         'required' => true,
                     ],
+                    [
+                        'type' => 'html',
+                        'label' => $this->fields_values['_OD_SEND_EMAIL_MAX_MAIL_']['translate'],
+                        'name' => '_OD_SEND_EMAIL_MAX_MAIL_',
+                        'required' => true,
+                        'html_content' => "<input class='form-control active' type='number' name='_OD_SEND_EMAIL_MAX_MAIL_' min=0 value='" . Configuration::get('_OD_SEND_EMAIL_MAX_MAIL_') . "'>"
+                    ]
                 ],
                 'buttons' => [
                     [
