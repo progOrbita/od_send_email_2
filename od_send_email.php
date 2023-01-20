@@ -421,4 +421,22 @@ class Od_send_email extends Module
 
         return true;
     }
+
+    /**
+     * update cnt value
+     * 
+     * @param int $value value to update
+     * @param string $time where error appears
+     * 
+     * @return bool 
+     */
+
+    public function updateCNT($value, $time = '')
+    {
+        if (!Configuration::updateValue('_OD_SEND_EMAIL_CNT_', $value)) {
+            $this->check_date_error = $this->l('Error al actualizar el contador cuando ' . $time . ' iguales.');
+            return false;
+        }
+        return true;
+    }
 }
