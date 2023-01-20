@@ -179,7 +179,7 @@ class Od_send_email extends Module
     public function mailSender($lang, $name, $mail): string
     {
         if (!$this->checkDate()) {
-            return $this->displayError($this->l('Error límite de correos alcanzado'));
+            return $this->displayError($this->check_date_error);
         }
 
         if (!Mail::send(
@@ -378,19 +378,28 @@ class Od_send_email extends Module
         $date = explode(' ', date('Y/M/d h:i:s'));
         $last_date = explode(' ', Configuration::get('_OD_SEND_EMAIL_LAST_DATE_'));
         if ($date[0] != $last_date[0]) {
+            if (!Configuration::updateValue('_OD_SEND_EMAIL_CNT_', 0)) {
+                $this->check_date_error=$this->l('Error al actualizar los datos');
+                return false;
+            }
             return true;
         }
 
         $hour = explode(':', $date[1]);
         $last_hour = explode(':', $last_date[1]);
         if ($hour[0] != $last_hour[0]) {
+            if (!Configuration::updateValue('_OD_SEND_EMAIL_CNT_', 0)) {
+                $this->check_date_error=$this->l('Error al actualizar los datos');
+                return false;
+            }
             return true;
         }
-
+        
         if (Configuration::get('_OD_SEND_EMAIL_CNT_') < Configuration::get('_OD_SEND_EMAIL_MAX_MAIL_')) {
             return true;
         }
-
+        
+        $this->check_date_error=$this->l('Error límite de correos alcanzado');
         return false;
     }
 
