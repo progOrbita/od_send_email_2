@@ -127,13 +127,14 @@ class Od_send_email extends Module
     }
 
     /**
-     * Check if value is corrrect and update
+     * Check if mail value is corrrect and update
      * 
      * @param string $value is name of input mail
      * @param string $default
      * 
      * @return bool
      */
+
     public function validateMail($value, $default = ''): bool
     {
         $mail = (string) Tools::getValue($value, $default);
