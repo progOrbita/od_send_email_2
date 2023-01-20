@@ -177,6 +177,10 @@ class Od_send_email extends Module
 
     public function mailSender($lang, $name, $mail): string
     {
+        if (!$this->checkDate()) {
+            return $this->displayError($this->l('Error límite de correos alcanzado'));
+        }
+
         if (!Mail::send(
             $lang,
             'plantilla',
