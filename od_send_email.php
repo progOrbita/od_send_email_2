@@ -39,6 +39,10 @@ class Od_send_email extends Module
                 'default' => 'web.orbitadigital@gmail.com',
                 'function' => 'validateMail'
             ],
+            '_OD_SEND_EMAIL_MAX_MAIL_' => [
+                'translate' => $this->l('Maximo de mails por hora'),
+                'default' => 0,
+                'function' => 'validateInt'
             ]
         ];
     }
