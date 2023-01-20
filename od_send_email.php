@@ -200,6 +200,7 @@ class Od_send_email extends Module
             return $this->displayError($this->l('Error al realizar el envio'));
         }
 
+        $this->updateConfiguration();
         return $this->displayConfirmation($this->l('Correo enviado'));
     }
 
