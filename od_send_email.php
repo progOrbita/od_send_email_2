@@ -146,6 +146,25 @@ class Od_send_email extends Module
     }
 
     /**
+     * Check if number value is corrrect and update
+     * 
+     * @param int $value is name of input mail
+     * @param string $default
+     * 
+     * @return bool
+     */
+
+    public function validateInt($value, $default = 0): bool
+    {
+        $number = (int) Tools::getValue($value, $default);
+        if (!Validate::isInt($number)) {
+            return false;
+        }
+
+        return Configuration::updateValue($value, $number);
+    }
+
+    /**
      * send mail
      * 
      * @param int $lang 
