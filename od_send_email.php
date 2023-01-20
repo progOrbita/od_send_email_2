@@ -31,11 +31,14 @@ class Od_send_email extends Module
         $this->fields_values = [
             '_OD_SEND_EMAIL_FROM_' => [
                 'translate' => $this->l('Remitente'),
-                'default' => 'web.orbitadigital@gmail.com'
+                'default' => 'web.orbitadigital@gmail.com',
+                'function' => 'validateMail'
             ],
             '_OD_SEND_EMAIL_BCC_' => [
                 'translate' => $this->l('Copia'),
-                'default' => 'web.orbitadigital@gmail.com'
+                'default' => 'web.orbitadigital@gmail.com',
+                'function' => 'validateMail'
+            ],
             ]
         ];
     }
