@@ -33,7 +33,7 @@ class Od_send_email extends Module
                 'translate' => $this->l('Remitente'),
                 'default' => 'web.orbitadigital@gmail.com'
             ],
-            '_OD_SEND_EMAIL_BCC' => [
+            '_OD_SEND_EMAIL_BCC_' => [
                 'translate' => $this->l('Copia'),
                 'default' => 'web.orbitadigital@gmail.com'
             ]
@@ -162,7 +162,7 @@ class Od_send_email extends Module
             _PS_MODULE_DIR_ . 'od_send_email/mails',
             false,
             Null,
-            Configuration::get('_OD_SEND_EMAIL_BCC')
+            Configuration::get('_OD_SEND_EMAIL_BCC_')
         )) {
             return $this->displayError($this->l('Error al realizar el envio'));
         }
@@ -187,8 +187,8 @@ class Od_send_email extends Module
                     ],
                     [
                         'type' => 'text',
-                        'label' => $this->fields_values['_OD_SEND_EMAIL_BCC']['translate'],
-                        'name' => '_OD_SEND_EMAIL_BCC',
+                        'label' => $this->fields_values['_OD_SEND_EMAIL_BCC_']['translate'],
+                        'name' => '_OD_SEND_EMAIL_BCC_',
                         'size' => 20,
                         'required' => true,
                     ],
