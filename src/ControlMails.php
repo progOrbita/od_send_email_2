@@ -63,4 +63,17 @@ class ControlMails
         $string = "DELETE FROM `" . $this->table . "` WHERE id=" . $id;
         return Db::getInstance()->execute($string);
     }
+
+    /**
+     * get table´s data
+     * 
+     * @return array|false
+     */
+
+    public function select()
+    {
+        $string = "SELECT * FROM " . $this->table;
+        return Db::getInstance()->executeS($string);
+    }
+
 }
