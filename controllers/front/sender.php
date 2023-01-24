@@ -11,8 +11,7 @@ class Od_Send_EmailSenderModuleFrontController extends ModuleFrontController
     {
         $this->validateField('nombre');
         $this->validateField('mail');
-        echo json_encode(['result' => $this->module->mailSender($this->context->language->id, Tools::getValue('nombre'), Tools::getValue('mail'))]);
-        die;
+        die(json_encode(['result' => $this->module->mailSender($this->context->language->id, Tools::getValue('nombre'), Tools::getValue('mail'))]));
     }
 
     /**
@@ -24,8 +23,7 @@ class Od_Send_EmailSenderModuleFrontController extends ModuleFrontController
     public function validateField($param)
     {
         if (!Tools::getIsset($param) || empty(Tools::getValue($param))) {
-            echo json_encode(['result' => "Parametro de ajax erroneo: " . $param]);
-            die;
+            die(json_encode(['result' => "Parametro de ajax erroneo: " . $param]));
         }
     }
 }
