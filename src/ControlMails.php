@@ -27,4 +27,22 @@ class ControlMails
         return Db::getInstance()->execute($string);
     }
 
+    /**
+     * insert row 
+     * 
+     * @param int id
+     * @param bool is_customer
+     * 
+     * @return bool
+     */
+
+    public function insert(int $id, bool $is_customer): bool
+    {
+        if ($id <= 0) {
+            return false;
+        }
+
+        $string = "INSERT INTO `" . $this->table . "` (`id_user`, `is_customer`,`date_send`) VALUES (" . $id . ", " . $is_customer . ",'" . date('Y/M/d h:i:s') . "')";
+        return Db::getInstance()->execute($string);
+    }
 }
