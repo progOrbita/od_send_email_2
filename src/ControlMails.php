@@ -45,4 +45,22 @@ class ControlMails
         $string = "INSERT INTO `" . $this->table . "` (`id_user`, `is_customer`,`date_send`) VALUES (" . $id . ", " . $is_customer . ",'" . date('Y/M/d h:i:s') . "')";
         return Db::getInstance()->execute($string);
     }
+
+    /**
+     * delete row
+     * 
+     * @param int id
+     * 
+     * @return bool
+     */
+
+    public function delete(int $id): bool
+    {
+        if ($id <= 0) {
+            return false;
+        }
+
+        $string = "DELETE FROM `" . $this->table . "` WHERE id=" . $id;
+        return Db::getInstance()->execute($string);
+    }
 }
