@@ -15,4 +15,16 @@ class ControlMails
         return Db::getInstance()->execute($string);
     }
 
+    /**
+     * uninstall table on database
+     * 
+     * @return bool
+     */
+
+    public static function uninstall(): bool
+    {
+        $string = "DROP TABLE IF EXISTS `" . self::$table . "`";
+        return Db::getInstance()->execute($string);
+    }
+
 }
