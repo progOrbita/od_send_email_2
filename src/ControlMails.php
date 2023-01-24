@@ -76,4 +76,14 @@ class ControlMails
         return Db::getInstance()->executeS($string);
     }
 
+    /**
+     * update row
+     * 
+     * @return bool 
+     */
+
+    public function update(): bool
+    {
+        return true;
+    }
 }
