@@ -33,6 +33,7 @@ class ControlMails
      * 
      * @return bool
      */
+    public static function insert(int $id, bool $is_customer): bool
     {
         if ($id <= 0) {
             return false;
