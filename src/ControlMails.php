@@ -1,7 +1,7 @@
 <?php
 class ControlMails
 {
-    private $table = "od_send_email_control";
+    private static $table = "od_send_email_control";
 
     /**
      * install table
