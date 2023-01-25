@@ -10,7 +10,7 @@ class ControlMails
      */
     public static function install(): bool
     {
-        $string = "CREATE TABLE IF NOT EXISTS " . self::$table . " ( `id` INT NOT NULL AUTO_INCREMENT , `id_user` INT NOT NULL , `is_customer` INT(1) NOT NULL, date_send DATE, PRIMARY KEY (`id`))";
+        $string = "CREATE TABLE IF NOT EXISTS " . self::$table . " ( `id` INT NOT NULL AUTO_INCREMENT , `id_user` INT NOT NULL , `is_customer` INT(1) NOT NULL, date_send DATETIME, PRIMARY KEY (`id`))";
         return Db::getInstance()->execute($string);
     }
 
