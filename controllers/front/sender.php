@@ -30,7 +30,7 @@ class Od_Send_EmailSenderModuleFrontController extends ModuleFrontController
         $value = trim(Tools::getValue($param, ''));
 
         if (empty(Tools::getValue($param))) {
-            die(json_encode(['result' => "Parametro de ajax erroneo: " . $param]));
+            die(json_encode(['result' => $this->module->l("Parametro de ajax erroneo: ") . $param]));
         }
 
         return $value;
