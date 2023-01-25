@@ -174,10 +174,12 @@ class Od_send_email extends Module
      * @param int $lang 
      * @param string $name of employee/customer
      * @param string $mail of employee/customer
+     * @param int $id of employee/customer
+     * @param bool $is_customer customer=true employee=false
      * 
      * @return string
      */
-    public function mailSender($lang, $name, $mail): string
+    public function mailSender(int $lang, string $name, string $mail, int $id, bool $is_customer): string
     {
         if (!$this->checkDate()) {
             return $this->displayError($this->check_date_error);
