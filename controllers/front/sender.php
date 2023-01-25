@@ -21,8 +21,12 @@ class Od_Send_EmailSenderModuleFrontController extends ModuleFrontController
      */
     public function validateField($param)
     {
-        if (!Tools::getIsset($param) || empty(Tools::getValue($param))) {
+        $value = trim(Tools::getValue($param, ''));
+
+        if (empty(Tools::getValue($param))) {
             die(json_encode(['result' => "Parametro de ajax erroneo: " . $param]));
         }
+
+        return $value;
     }
 }
