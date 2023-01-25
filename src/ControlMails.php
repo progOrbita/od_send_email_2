@@ -33,7 +33,6 @@ class ControlMails
      * 
      * @return bool
      */
-    public function insert(int $id, bool $is_customer): bool
     {
         if ($id <= 0) {
             return false;
@@ -51,9 +50,6 @@ class ControlMails
      */
     public function delete(int $id): bool
     {
-        if ($id <= 0) {
-            return false;
-        }
         $string = "DELETE FROM `" . $this->table . "` WHERE id=" . $id;
         return Db::getInstance()->execute($string);
     }
