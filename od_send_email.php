@@ -114,7 +114,7 @@ class Od_send_email extends Module
      * 
      * @return string error
      */
-    public function updateFieldsValue($is_install = false): string
+    public function updateFieldsValue(bool $is_install = false): string
     {
         foreach ($this->fields_values as $key => $value) {
             if ($this->{$value['function']}($key, $value['default'])) {
@@ -139,7 +139,7 @@ class Od_send_email extends Module
      * 
      * @return bool
      */
-    public function validateMail($value, $default = ''): bool
+    public function validateMail(string $value, string $default = ''): bool
     {
         $mail = (string) Tools::getValue($value, $default);
 
@@ -158,7 +158,7 @@ class Od_send_email extends Module
      * 
      * @return bool
      */
-    public function validateInt($value, $default = 0): bool
+    public function validateInt(int $value, int $default = 0): bool
     {
         $number = (int) Tools::getValue($value, $default);
         if (!Validate::isInt($number)) {
@@ -420,7 +420,7 @@ class Od_send_email extends Module
      * 
      * @return bool 
      */
-    public function updateCNT($value, $time = '')
+    public function updateCNT(int $value, string $time = '')
     {
         if (!Configuration::updateValue('_OD_SEND_EMAIL_CNT_', $value)) {
             $this->check_date_error = $this->l('Error al actualizar el contador cuando ' . $time . ' iguales.');
