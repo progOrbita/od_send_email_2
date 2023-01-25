@@ -3,6 +3,8 @@ if (!defined('_PS_VERSION_')) {
     exit;
 }
 
+require_once __DIR__ . '/src/ControlMails.php';
+
 class Od_send_email extends Module
 {
 
