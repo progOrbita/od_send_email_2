@@ -64,7 +64,8 @@ class Od_send_email extends Module
     public function uninstall()
     {
         return parent::uninstall()
-            && $this->deleteFieldsValue();
+            && $this->deleteFieldsValue()
+            && ControlMails::uninstall();
     }
 
     public function getContent()
