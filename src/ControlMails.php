@@ -35,7 +35,7 @@ class ControlMails
      */
     public static function insert(int $id, bool $is_customer): bool
     {
-        $string = "INSERT INTO `" . $this->table . "` (`id_user`, `is_customer`,`date_send`) VALUES (" . $id . ", " . $is_customer . ",'" . date('Y/M/d h:i:s') . "')";
+        $string = "INSERT INTO `" . self::$table . "` (`id_user`, `is_customer`,`date_send`) VALUES (" . $id . ", " . (int) $is_customer . ",'" . date('Y-m-d H:i:s') . "')";
         return Db::getInstance()->execute($string);
     }
 
