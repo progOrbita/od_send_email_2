@@ -317,7 +317,7 @@ class Od_send_email extends Module
             ]
         );
 
-        $this->setJSVars($this->context->customer->firstname, $this->context->customer->email);
+        $this->setJSVars($this->context->customer->firstname ?? '', $this->context->customer->email ?? '', $this->context->customer->id ?? 0, true);
     }
 
     /**
@@ -337,7 +337,7 @@ class Od_send_email extends Module
     public function hookActionAdminControllerSetMedia()
     {
         $this->context->controller->addJS($this->_path . 'views/js/od_send_email.js');
-        $this->setJSVars($this->context->employee->firstname, $this->context->employee->email);
+        $this->setJSVars($this->context->employee->firstname, $this->context->employee->email, $this->context->employee->id, false);
     }
 
     /**
