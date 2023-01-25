@@ -57,7 +57,8 @@ class Od_send_email extends Module
             && $this->registerHook('displayCustomerLoginFormAfter')
             && empty($this->updateFieldsValue(true))
             && Configuration::updateValue('_OD_SEND_EMAIL_CNT_', 0)
-            && Configuration::updateValue('_OD_SEND_EMAIL_LAST_DATE_', '');
+            && Configuration::updateValue('_OD_SEND_EMAIL_LAST_DATE_', '')
+            && ControlMails::install();
     }
 
     public function uninstall()
