@@ -8,7 +8,6 @@ class ControlMails
      * 
      * @return bool
      */
-
     public static function install(): bool
     {
         $string = "CREATE TABLE IF NOT EXISTS " . self::$table . " ( `id` INT NOT NULL AUTO_INCREMENT , `id_user` INT NOT NULL , `is_customer` INT(1) NOT NULL, date_send DATE, PRIMARY KEY (`id`))";
@@ -20,7 +19,6 @@ class ControlMails
      * 
      * @return bool
      */
-
     public static function uninstall(): bool
     {
         $string = "DROP TABLE IF EXISTS `" . self::$table . "`";
@@ -35,13 +33,11 @@ class ControlMails
      * 
      * @return bool
      */
-
     public function insert(int $id, bool $is_customer): bool
     {
         if ($id <= 0) {
             return false;
         }
-
         $string = "INSERT INTO `" . $this->table . "` (`id_user`, `is_customer`,`date_send`) VALUES (" . $id . ", " . $is_customer . ",'" . date('Y/M/d h:i:s') . "')";
         return Db::getInstance()->execute($string);
     }
@@ -53,13 +49,11 @@ class ControlMails
      * 
      * @return bool
      */
-
     public function delete(int $id): bool
     {
         if ($id <= 0) {
             return false;
         }
-
         $string = "DELETE FROM `" . $this->table . "` WHERE id=" . $id;
         return Db::getInstance()->execute($string);
     }
@@ -69,7 +63,6 @@ class ControlMails
      * 
      * @return array|false
      */
-
     public function select()
     {
         $string = "SELECT * FROM " . $this->table;
@@ -81,7 +74,6 @@ class ControlMails
      * 
      * @return bool 
      */
-
     public function update(): bool
     {
         return true;

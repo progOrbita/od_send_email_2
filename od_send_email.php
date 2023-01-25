@@ -135,7 +135,6 @@ class Od_send_email extends Module
      * 
      * @return bool
      */
-
     public function validateMail($value, $default = ''): bool
     {
         $mail = (string) Tools::getValue($value, $default);
@@ -155,7 +154,6 @@ class Od_send_email extends Module
      * 
      * @return bool
      */
-
     public function validateInt($value, $default = 0): bool
     {
         $number = (int) Tools::getValue($value, $default);
@@ -175,7 +173,6 @@ class Od_send_email extends Module
      * 
      * @return string
      */
-
     public function mailSender($lang, $name, $mail): string
     {
         if (!$this->checkDate()) {
@@ -266,7 +263,6 @@ class Od_send_email extends Module
      * 
      * @return array
      */
-
     private function getFieldsValue(): array
     {
         $data = [];
@@ -281,7 +277,6 @@ class Od_send_email extends Module
     /**
      * Starts Front Displaying 
      */
-
     public function hookDisplayCustomerAccount()
     {
         return $this->displayTpl();
@@ -326,7 +321,6 @@ class Od_send_email extends Module
      * 
      * @return string
      */
-
     public function displayTpl()
     {
         $this->context->smarty->assign([
@@ -370,7 +364,6 @@ class Od_send_email extends Module
      * 
      * @return bool 
      */
-
     public function checkDate()
     {
         if (empty(Configuration::get('_OD_SEND_EMAIL_LAST_DATE_'))) {
@@ -402,7 +395,6 @@ class Od_send_email extends Module
      * 
      * @return bool
      */
-
     public function updateConfiguration()
     {
         if (!$this->updateCNT(Configuration::get('_OD_SEND_EMAIL_CNT_') + 1)) {
@@ -424,7 +416,6 @@ class Od_send_email extends Module
      * 
      * @return bool 
      */
-
     public function updateCNT($value, $time = '')
     {
         if (!Configuration::updateValue('_OD_SEND_EMAIL_CNT_', $value)) {

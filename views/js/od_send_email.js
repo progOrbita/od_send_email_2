@@ -3,7 +3,6 @@
  *
  * @return string result
  */
-
 $(document).on("click", ".od_sender", function () {
   let data = {
     nombre: window.name,

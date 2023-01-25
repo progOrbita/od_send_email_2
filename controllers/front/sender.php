@@ -19,7 +19,6 @@ class Od_Send_EmailSenderModuleFrontController extends ModuleFrontController
      * 
      * @param mixed param 
      */
-    
     public function validateField($param)
     {
         if (!Tools::getIsset($param) || empty(Tools::getValue($param))) {
