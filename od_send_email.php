@@ -204,9 +204,14 @@ class Od_send_email extends Module
             return $this->displayError($this->l('Error al realizar el envio'));
         }
 
+        if (!ControlMails::insert($id, $is_customer)) {
+            return $this->displayError($this->l('Error al almacenar datos en la db'));
+        }
+
         if (!$this->updateConfiguration()) {
             return $this->displayError($this->l('Error al actualizar los datos'));
         };
+
         return $this->displayConfirmation($this->l('Correo enviado'));
     }
 
