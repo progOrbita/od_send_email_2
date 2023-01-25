@@ -344,9 +344,11 @@ class Od_send_email extends Module
      * set js vars
      * 
      * @param string $name 
+     * @param string $mail 
+     * @param int $id 
+     * @param bool $is_customer 
      */
-
-    public function setJSVars($name, $mail)
+    public function setJSVars(string $name = '', string $mail = '', int $id = 0, bool $is_customer)
     {
         if (empty($name)) {
             $name = $this->l("Anónimo");
@@ -359,7 +361,9 @@ class Od_send_email extends Module
         Media::addJsDef([
             'name' => $name,
             'mail' => $mail,
-            'od_send_url' => Context::getContext()->link->getModuleLink('od_send_email', 'sender', array())
+            'id' => $id,
+            'is_customer' => $is_customer,
+            'od_send_url' => Context::getContext()->link->getModuleLink('od_send_email', 'sender',  [])
         ]);
     }
 
