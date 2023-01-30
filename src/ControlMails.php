@@ -68,7 +68,7 @@ class ControlMails
      * 
      * @return bool 
      */
-    public function update(): bool
+    public static function update(): bool
     {
         return true;
     }
