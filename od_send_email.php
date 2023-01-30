@@ -477,4 +477,52 @@ class Od_send_email extends Module
         }
         return true;
     }
+
+    /**
+     * display helper list
+     * 
+     * @return string
+     */
+    private function displayHelperList(): string
+    {
+        $data = ControlMails::select();
+        if ($data === false) {
+            return $this->displayError($this->l('Error al obtener los datos de la base de datos'));
+        }
+
+        $fields_list = [
+            'id' => [
+                'title' => $this->l('id'),
+                'align' => 'center',
+                'type' => 'text',
+            ],
+            'id_user' => [
+                'title' => $this->l('id de usuario'),
+                'align' => 'center',
+                'type' => 'text',
+            ],
+            'is_customer' => [
+                'title' => $this->l('¿Es comprador?'),
+                'align' => 'center',
+                'type' => 'text',
+            ],
+            'date_send' => [
+                'title' => $this->l('Fecha de envío'),
+                'align' => 'center',
+                'type' => 'text',
+            ]
+        ];
+
+        $helper = new HelperList();
+        $helper->shopLinkType = '';
+        $helper->simple_header = false;
+        $helper->actions = ['delete'];
+        $helper->identifier = 'id_' . $this->name . '_table';
+        $helper->show_toolbar = true;
+        $helper->title = $this->l('Tabla de envío de mails');
+        $helper->table = $this->name . '_table';
+        $helper->token = Tools::getAdminTokenLite('AdminModules');
+        $helper->currentIndex = AdminController::$currentIndex . '&configure=' . $this->name;
+        return $helper->generateList($data, $fields_list);
+    }
 }
