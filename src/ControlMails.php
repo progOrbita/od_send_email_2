@@ -57,9 +57,9 @@ class ControlMails
      * 
      * @return array|false
      */
-    public function select()
+    public static function select()
     {
-        $string = "SELECT * FROM " . $this->table;
+        $string = "SELECT * FROM " . self::$table;
         return Db::getInstance()->executeS($string);
     }
 
