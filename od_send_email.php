@@ -360,6 +360,20 @@ class Od_send_email extends Module
         return $this->display(__FILE__, 'od_send_email.tpl');
     }
 
+    /**
+     * display the admin tpl
+     * 
+     * @return string
+     */
+    public function displayAdminTpl()
+    {
+        $this->context->smarty->assign([
+            'tabs' => $this->configTabs,
+        ]);
+
+        return $this->display(__FILE__, 'od_send_email_config.tpl');
+    }
+
     public function hookActionAdminControllerSetMedia()
     {
         $this->context->controller->addJS($this->_path . 'views/js/od_send_email.js');
