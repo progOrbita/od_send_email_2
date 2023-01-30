@@ -213,7 +213,7 @@ class Od_send_email extends Module
             $lang,
             'plantilla',
             'prueba mail',
-            array('{$name}' => $name),    // este array le pasa variables al tpl en este caso no lo utilizamos porq utilizamos variables globales del tpl
+            ['{$name}' => $name],    // este array le pasa variables al tpl en este caso no lo utilizamos porq utilizamos variables globales del tpl
             $mail,
             Null,
             Configuration::get('_OD_SEND_EMAIL_FROM_'),
