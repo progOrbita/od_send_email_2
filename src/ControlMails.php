@@ -46,9 +46,9 @@ class ControlMails
      * 
      * @return bool
      */
-    public function delete(int $id): bool
+    public static function delete(int $id): bool
     {
-        $string = "DELETE FROM `" . $this->table . "` WHERE id=" . $id;
+        $string = "DELETE FROM `" . self::$table . "` WHERE id=" . $id;
         return Db::getInstance()->execute($string);
     }
 
