@@ -68,6 +68,8 @@ class Od_send_email extends Module
     {
         return parent::uninstall()
             && $this->deleteFieldsValue()
+            && Configuration::deleteByName('_OD_SEND_EMAIL_CNT_')
+            && Configuration::deleteByName('_OD_SEND_EMAIL_LAST_DATE_')
             && ControlMails::uninstall();
     }
 
