@@ -105,6 +105,11 @@ class Od_send_email extends Module
             return '';
         }
 
+        $this->configTabs["tab1"]['class_active'] = "";
+        $this->configTabs["tab1"]['class_in'] = "";
+        $this->configTabs["tab2"]['class_active'] = "active";
+        $this->configTabs["tab2"]['class_in'] = "in";
+
         return $this->updateFieldsValue();
     }
 
