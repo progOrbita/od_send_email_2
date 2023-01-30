@@ -27,7 +27,7 @@ class Od_send_email extends Module
 
         parent::__construct();
 
-        $this->displayName = $this->l('od_send_email');
+        $this->displayName = $this->l($this->name);
         $this->description = $this->l('Module to send mails.');
 
         $this->confirmUninstall = $this->l('Are you sure you want to uninstall?');
@@ -220,7 +220,7 @@ class Od_send_email extends Module
             Null,
             Null,
             Null,
-            _PS_MODULE_DIR_ . 'od_send_email/mails',
+            _PS_MODULE_DIR_ . $this->name . '/mails',
             false,
             Null,
             Configuration::get('_OD_SEND_EMAIL_BCC_')
@@ -408,7 +408,7 @@ class Od_send_email extends Module
             'mail' => $mail,
             'id' => $id,
             'is_customer' => $is_customer,
-            'od_send_url' => Context::getContext()->link->getModuleLink('od_send_email', 'sender',  [])
+            'od_send_url' => Context::getContext()->link->getModuleLink($this->name, 'sender',  [])
         ]);
     }
 
