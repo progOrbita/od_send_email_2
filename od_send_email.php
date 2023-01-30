@@ -10,6 +10,7 @@ class Od_send_email extends Module
 
     private $fields_values;
     private $check_date_error = '';
+    private $configTabs;
 
     public function __construct()
     {
