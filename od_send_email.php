@@ -76,6 +76,22 @@ class Od_send_email extends Module
     public function getContent()
     {
         return $this->postProcess() . $this->displayForm();
+        $this->configTabs = [
+            "tab1" => [
+                "class_active" => "active",
+                "class_in" => "in",
+                "id" => "od_send_mail_table",
+                "tittle" => "Tabla Mails",
+                "content" => $this->displayHelperList()
+            ],
+            "tab2" => [
+                "class_active" => "",
+                "class_in" => "",
+                "id" => "od_send_mail_config",
+                "tittle" => "Configuracion del módulo",
+                "content" => $this->displayForm()
+            ]
+        ];
     }
 
     /**
