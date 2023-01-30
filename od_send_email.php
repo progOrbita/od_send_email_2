@@ -177,12 +177,12 @@ class Od_send_email extends Module
     /**
      * Check if number value is corrrect and update
      * 
-     * @param int $value is name of input mail
+     * @param string $value is name of input mail
      * @param int $default
      * 
      * @return bool
      */
-    public function validateInt(int $value, int $default = 0): bool
+    public function validateInt(string $value, int $default = 0): bool
     {
         $number = (int) Tools::getValue($value, $default);
         if (!Validate::isInt($number)) {
