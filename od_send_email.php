@@ -75,7 +75,6 @@ class Od_send_email extends Module
 
     public function getContent()
     {
-        return $this->postProcess() . $this->displayForm();
         $this->configTabs = [
             "tab1" => [
                 "class_active" => "active",
@@ -92,6 +91,7 @@ class Od_send_email extends Module
                 "content" => $this->displayForm()
             ]
         ];
+        return $this->postProcess() . $this->displayAdminTpl();
     }
 
     /**
