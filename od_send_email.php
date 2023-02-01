@@ -490,13 +490,6 @@ class Od_send_email extends Module
             return $this->displayError($this->l('Error al obtener los datos de la base de datos'));
         }
 
-        foreach($data as &$mail_sended){
-            if($mail_sended['is_customer']){
-                $mail_sended['is_customer']=$this->l("Si");
-            }else{
-                $mail_sended['is_customer']=$this->l("No");
-            }
-        }
         $fields_list = [
             'id' => [
                 'title' => $this->l('id'),
@@ -511,7 +504,8 @@ class Od_send_email extends Module
             'is_customer' => [
                 'title' => $this->l('¿Es comprador?'),
                 'align' => 'center',
-                'type' => 'text',
+                'type' => 'bool',
+                'icon' => [0 => 'disabled.gif', 1 => 'enabled.gif', 'default' => 'disabled.gif']
             ],
             'date_send' => [
                 'title' => $this->l('Fecha de envío'),
