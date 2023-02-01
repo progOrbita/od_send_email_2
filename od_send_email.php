@@ -27,7 +27,7 @@ class Od_send_email extends Module
 
         parent::__construct();
 
-        $this->displayName = $this->l($this->name);
+        $this->displayName = $this->l('Send email module');
         $this->description = $this->l('Module to send mails.');
 
         $this->confirmUninstall = $this->l('Are you sure you want to uninstall?');
