@@ -491,6 +491,14 @@ class Od_send_email extends Module
         }
 
         $fields_list = [
+    /**
+     * set table´s actions
+     */
+    private function setActionsHelperList()
+    {
+        $this->helperList->actions = ['delete'];
+    }
+
             'id' => [
                 'title' => $this->l('id'),
                 'align' => 'center',
