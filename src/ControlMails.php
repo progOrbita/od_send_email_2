@@ -54,10 +54,12 @@ class ControlMails
 
     /**
      * get table´s data
+     * @param string $orderBy 
+     * @param string $orderWay 
      * 
      * @return array|false
      */
-    public static function select()
+    public static function select($orderBy="id",$orderWay="ASC")
     {
         $string = "SELECT * FROM " . self::$table;
         return Db::getInstance()->executeS($string);
