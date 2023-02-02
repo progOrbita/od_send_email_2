@@ -426,13 +426,13 @@ class Od_send_email extends Module
         $date = explode(' ', date('Y/M/d h:i:s'));
         $last_date = explode(' ', Configuration::get('_OD_SEND_EMAIL_LAST_DATE_'));
         if ($date[0] != $last_date[0]) {
-            return $this->updateCNT(Configuration::get('_OD_SEND_EMAIL_CNT_') + 1, $this->l('dia'));
+            return $this->updateCNT(0, $this->l('dia'));
         }
 
         $hour = explode(':', $date[1]);
         $last_hour = explode(':', $last_date[1]);
         if ($hour[0] != $last_hour[0]) {
-            return $this->updateCNT(Configuration::get('_OD_SEND_EMAIL_CNT_') + 1, $this->l('hora'));
+            return $this->updateCNT(0, $this->l('hora'));
         }
 
         if (Configuration::get('_OD_SEND_EMAIL_CNT_') < Configuration::get('_OD_SEND_EMAIL_MAX_MAIL_')) {
