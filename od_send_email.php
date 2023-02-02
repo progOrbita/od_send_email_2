@@ -486,7 +486,11 @@ class Od_send_email extends Module
      */
     private function displayHelperList(): string
     {
-        $data = ControlMails::select();
+        $data = $this->getData();
+        if (!is_array($data)) {
+            return $data;
+        }
+
         $this->helperList = new HelperList();
         $this->helperList->orderBy = Tools::getValue($this->name . '_tableOrderby', 'id');
         $this->helperList->orderWay = strtoupper(Tools::getValue($this->name . '_tableOrderway', 'ASC'));
