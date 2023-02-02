@@ -490,7 +490,6 @@ class Od_send_email extends Module
             return $this->displayError($this->l('Error al obtener los datos de la base de datos'));
         }
 
-        $fields_list = [
     /**
      * set table´s actions
      */
@@ -499,26 +498,41 @@ class Od_send_email extends Module
         $this->helperList->actions = ['delete'];
     }
 
+    /**
+     * get fields list of table
+     * 
+     * @return array
+     */
+    private function getFieldsList()
+    {
+        return  [
             'id' => [
-                'title' => $this->l('id'),
+                'title' => $this->l('Id'),
                 'align' => 'center',
                 'type' => 'text',
+                'orderby' => true,
+                'filter_type' => 'int'
             ],
-            'id_user' => [
-                'title' => $this->l('id de usuario'),
+            'firstname' => [
+                'title' => $this->l('Nombre de usuario'),
                 'align' => 'center',
                 'type' => 'text',
+                'orderby' => true
             ],
             'is_customer' => [
                 'title' => $this->l('¿Es comprador?'),
                 'align' => 'center',
-                'type' => 'bool',
-                'icon' => [0 => 'disabled.gif', 1 => 'enabled.gif', 'default' => 'disabled.gif']
+                'type' => 'select',
+                'list' => [0 => $this->l("No es cliente"), 1 => $this->l("Es cliente")],
+                'filter_key' => 'cl\!is_customer',
+                'icon' => [0 => 'disabled.gif', 1 => 'enabled.gif', 'default' => 'disabled.gif'],
+                'orderby' => true
             ],
             'date_send' => [
                 'title' => $this->l('Fecha de envío'),
                 'align' => 'center',
-                'type' => 'text',
+                'type' => 'datetime',
+                'orderby' => true
             ]
         ];
 
