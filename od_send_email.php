@@ -487,6 +487,21 @@ class Od_send_email extends Module
     private function displayHelperList(): string
     {
         $data = ControlMails::select();
+        $this->helperList = new HelperList();
+        $this->helperList->orderBy = Tools::getValue($this->name . '_tableOrderby', 'id');
+        $this->helperList->orderWay = strtoupper(Tools::getValue($this->name . '_tableOrderway', 'ASC'));
+        $this->helperList->shopLinkType = '';
+        $this->helperList->simple_header = false;
+        $this->setActionsHelperList();
+        $this->helperList->identifier = 'id_' . $this->name . '_table';
+        $this->helperList->show_toolbar = true;
+        $this->helperList->title = $this->l('Tabla de envío de mails');
+        $this->helperList->table = $this->name . '_table';
+        $this->helperList->token = Tools::getAdminTokenLite('AdminModules');
+        $this->helperList->currentIndex = AdminController::$currentIndex . '&configure=' . $this->name;
+        return $this->helperList->generateList($data, $this->getFieldsList());
+    }
+
         if ($data === false) {
             return $this->displayError($this->l('Error al obtener los datos de la base de datos'));
         }
@@ -536,17 +551,5 @@ class Od_send_email extends Module
                 'orderby' => true
             ]
         ];
-
-        $helper = new HelperList();
-        $helper->shopLinkType = '';
-        $helper->simple_header = false;
-        $helper->actions = ['delete'];
-        $helper->identifier = 'id_' . $this->name . '_table';
-        $helper->show_toolbar = true;
-        $helper->title = $this->l('Tabla de envío de mails');
-        $helper->table = $this->name . '_table';
-        $helper->token = Tools::getAdminTokenLite('AdminModules');
-        $helper->currentIndex = AdminController::$currentIndex . '&configure=' . $this->name;
-        return $helper->generateList($data, $fields_list);
     }
 }
