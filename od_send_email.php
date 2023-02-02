@@ -502,9 +502,19 @@ class Od_send_email extends Module
         return $this->helperList->generateList($data, $this->getFieldsList());
     }
 
+    /**
+     * get db data
+     * 
+     * @return array|string
+     */
+    private function getData()
+    {
+        $data = ControlMails::select(Tools::getValue($this->name . '_tableOrderby', 'id'), Tools::getValue($this->name . '_tableOrderway', 'ASC'));
         if ($data === false) {
             return $this->displayError($this->l('Error al obtener los datos de la base de datos'));
         }
+        return $data;
+    }
 
     /**
      * set table´s actions
