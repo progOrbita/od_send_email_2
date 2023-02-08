@@ -10,7 +10,7 @@ class ControlMails
      */
     public static function install(): bool
     {
-        $string = "CREATE TABLE IF NOT EXISTS " . self::$table . " ( `id` INT NOT NULL AUTO_INCREMENT , `id_user` INT NOT NULL , `is_customer` INT(1) NOT NULL, date_send DATETIME, PRIMARY KEY (`id`))";
+        $string = "CREATE TABLE IF NOT EXISTS " . self::$table . " ( `id_od_send_email_table` INT NOT NULL AUTO_INCREMENT , `id_user` INT NOT NULL , `is_customer` INT(1) NOT NULL, date_send DATETIME, PRIMARY KEY (`id_od_send_email_table`))";
         return Db::getInstance()->execute($string);
     }
 
@@ -48,7 +48,7 @@ class ControlMails
      */
     public static function delete(int $id): bool
     {
-        $string = "DELETE FROM `" . self::$table . "` WHERE id=" . $id;
+        $string = "DELETE FROM `" . self::$table . "` WHERE id_od_send_email_table=" . $id;
         return Db::getInstance()->execute($string);
     }
 
@@ -60,7 +60,7 @@ class ControlMails
      * 
      * @return array|false
      */
-    public static function select($orderBy = "id", $orderWay = "ASC", $where = [])
+    public static function select($orderBy = "id_od_send_email_table", $orderWay = "ASC", $where = [])
     {
         $whereQuery = '';
         if (!empty($where)) {

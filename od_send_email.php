@@ -523,7 +523,7 @@ class Od_send_email extends Module
             $where = $this->getFilters();
         }
 
-        $data = ControlMails::select(Tools::getValue($this->name . '_tableOrderby', 'id'), Tools::getValue($this->name . '_tableOrderway', 'ASC'), $where);
+        $data = ControlMails::select(Tools::getValue($this->name . '_tableOrderby', 'id_od_send_email_table'), Tools::getValue($this->name . '_tableOrderway', 'ASC'), $where);
         if ($data === false) {
             return $this->displayError($this->l('Error al obtener los datos de la base de datos'));
         }
@@ -547,7 +547,7 @@ class Od_send_email extends Module
     private function getFieldsList()
     {
         return  [
-            'id' => [
+            'id_od_send_email_table' => [
                 'title' => $this->l('Id'),
                 'type' => 'text',
                 'width' => 50,
@@ -584,7 +584,7 @@ class Od_send_email extends Module
     private function getFilters(): array
     {
         $fields = [
-            'id' => 'int',
+            'id_od_send_email_table' => 'int',
             'date_send' => 'array',
             'firstname' => 'string',
             'is_customer' => 'bool'
