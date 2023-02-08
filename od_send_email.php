@@ -496,7 +496,6 @@ class Od_send_email extends Module
         $this->setActionsHelperList();
         $this->helperList->identifier = 'id_' . $this->name . '_table';
         $this->helperList->show_toolbar = true;
-        $this->helperList->title = $this->l('Tabla de envío de mails');
         $this->helperList->table = $this->name . '_table';
         $this->helperList->token = Tools::getAdminTokenLite('AdminModules');
         $this->helperList->currentIndex = AdminController::$currentIndex . '&configure=' . $this->name;
