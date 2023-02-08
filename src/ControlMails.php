@@ -56,12 +56,17 @@ class ControlMails
      * get table´s data
      * @param string $orderBy 
      * @param string $orderWay 
+     * @param array $where
      * 
      * @return array|false
      */
-    public static function select($orderBy="id",$orderWay="ASC")
+    public static function select($orderBy = "id", $orderWay = "ASC", $where = [])
     {
-        $query = "(SELECT osec.id, if(pe.firstname<=>null,'No encontrado',pe.firstname) as firstname, osec.is_customer, osec.date_send FROM od_send_email_control AS osec LEFT JOIN ps_employee as pe on pe.id_employee=osec.id_user WHERE osec.is_customer=0) UNION (SELECT osec.id, if(pc.firstname<=>null,'No encontrado',pc.firstname)as firstname, osec.is_customer, osec.date_send FROM od_send_email_control AS osec LEFT JOIN ps_customer as pc ON pc.id_customer=osec.id_user WHERE osec.is_customer=1) order by ".$orderBy." ".$orderWay;
+        $whereQuery = '';
+        if (!empty($where)) {
+            $whereQuery = ' WHERE ' . implode(' AND ', $where);
+        }
+
         return Db::getInstance()->executeS($query);
     }
 

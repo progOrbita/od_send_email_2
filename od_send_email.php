@@ -518,10 +518,16 @@ class Od_send_email extends Module
      */
     private function getData()
     {
-        $data = ControlMails::select(Tools::getValue($this->name . '_tableOrderby', 'id'), Tools::getValue($this->name . '_tableOrderway', 'ASC'));
+        $where = [];
+        if (!Tools::isSubmit('submitReset' . $this->name . '_table')) {
+            $where = $this->getFilters();
+        }
+
+        $data = ControlMails::select(Tools::getValue($this->name . '_tableOrderby', 'id'), Tools::getValue($this->name . '_tableOrderway', 'ASC'), $where);
         if ($data === false) {
             return $this->displayError($this->l('Error al obtener los datos de la base de datos'));
         }
+
         return $data;
     }
 
