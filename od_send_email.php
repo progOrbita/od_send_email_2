@@ -244,9 +244,6 @@ class Od_send_email extends Module
     {
         $form = [[
             'form' => [
-                'legend' => [
-                    'title' => $this->l('Envio de correo'),
-                ],
                 'input' => [
                     [
                         'type' => 'text',
