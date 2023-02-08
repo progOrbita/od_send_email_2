@@ -534,10 +534,9 @@ class Od_send_email extends Module
         return  [
             'id' => [
                 'title' => $this->l('Id'),
-                'align' => 'center',
                 'type' => 'text',
+                'width' => 50,
                 'orderby' => true,
-                'filter_type' => 'int'
             ],
             'firstname' => [
                 'title' => $this->l('Nombre de usuario'),
