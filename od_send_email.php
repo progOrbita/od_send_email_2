@@ -555,7 +555,6 @@ class Od_send_email extends Module
             ],
             'date_send' => [
                 'title' => $this->l('Fecha de envío'),
-                'align' => 'center',
                 'type' => 'datetime',
                 'orderby' => true
             ]
