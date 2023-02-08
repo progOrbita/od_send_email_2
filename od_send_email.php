@@ -371,8 +371,16 @@ class Od_send_email extends Module
      */
     public function displayAdminTpl()
     {
+        $err = '';
+        if (!empty($this->filterError)) {
+            foreach ($this->filterError as $key => $value) {
+                $err .= $this->displayError($value);
+            }
+        }
+
         $this->context->smarty->assign([
             'tabs' => $this->configTabs,
+            'err' => $err
         ]);
 
         return $this->display(__FILE__, 'od_send_email_config.tpl');
