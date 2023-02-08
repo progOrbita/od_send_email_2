@@ -549,7 +549,7 @@ class Od_send_email extends Module
                 'align' => 'center',
                 'type' => 'select',
                 'list' => [0 => $this->l("No es cliente"), 1 => $this->l("Es cliente")],
-                'filter_key' => 'cl\!is_customer',
+                'filter_key' => 'is_customer',
                 'icon' => [0 => 'disabled.gif', 1 => 'enabled.gif', 'default' => 'disabled.gif'],
                 'orderby' => true
             ],
