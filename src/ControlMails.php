@@ -79,4 +79,20 @@ class ControlMails
     {
         return true;
     }
+
+    /**
+     * function to build select querys
+     * @param string $table
+     * @param string $as
+     * @param int $isCustomer
+     * 
+     * @return string
+     */
+    private static function buildSelectQuery(string $table, string $as, int $isCustomer)
+    {
+        return "(SELECT osec.id, CONCAT(if(" . $as . ".firstname<=>null,'No encontrado'," . $as . ".firstname),' ',if(" . $as . ".lastname<=>null,' '," . $as . ".lastname)) AS firstname, osec.is_customer, osec.date_send 
+        FROM od_send_email_control AS osec 
+        LEFT JOIN " . _DB_PREFIX_ . $table . " AS " . $as . " on " . $as . ".id_" . $table . "=osec.id_user 
+        WHERE osec.is_customer=" . $isCustomer . ")";
+    }
 }
