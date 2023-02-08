@@ -12,6 +12,7 @@ class Od_send_email extends Module
     private $check_date_error = '';
     private $configTabs;
     private $helperList;
+    private $filterError = [];
 
     public function __construct()
     {
