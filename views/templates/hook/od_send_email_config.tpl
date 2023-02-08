@@ -1,4 +1,5 @@
 <!-- Block od_send_email -->
+{$err}
 <div class="tab-content">
     <ul class="nav nav-tabs" role="tablist">
         
