@@ -613,4 +613,47 @@ class Od_send_email extends Module
 
         return $filter_table_data;
     }
+
+    /**
+     * get where sql clause
+     * @param string type
+     * @param mixed $value
+     * @param string $key
+     * 
+     * @return string $where
+     */
+    private function getWhereCase($type, $value, $key)
+    {
+        switch ($type) {
+            case 'int':
+                $where = $key . '=' . (int) $value;
+                break;
+
+            case 'array':
+                if (empty($value[0])) {
+                    $value[1] .= ' 23:59:59';
+                    $where = 'a.' . $key . "<= '" . $value[1] . "'";
+                } elseif (empty($value[1])) {
+                    $where = 'a.' . $key . ">= '" . $value[0] . "'";
+                } else {
+                    $value[1] .= ' 23:59:59';
+                    $where = 'a.' . $key . " BETWEEN '" . $value[0] . "' AND '" . $value[1] . "'";
+                }
+
+                break;
+
+            default:
+                $where = '';
+                if ($key != 'firstname') {
+                    $where .= 'a.';
+                } else {
+                    $where .= $key . " LIKE '%" . $value . "%'";
+                    return $where;
+                }
+
+                $where .= $key . "='" . $value . "'";
+        }
+
+        return $where;
+    }
 }
