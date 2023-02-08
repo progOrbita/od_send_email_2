@@ -560,4 +560,57 @@ class Od_send_email extends Module
             ]
         ];
     }
+
+    /**
+     * get filters values
+     * 
+     * @return array
+     */
+    private function getFilters(): array
+    {
+        $fields = [
+            'id' => 'int',
+            'date_send' => 'array',
+            'firstname' => 'string',
+            'is_customer' => 'bool'
+        ];
+
+        $filter_table_data = [];
+        foreach (Tools::getAllValues() as $key => $value) {
+            if (is_array($value) && empty(array_filter($value))) {
+                continue;
+            }
+
+            if (is_string($value)) {
+                $value = trim($value);
+            }
+
+            if ($key != 'od_send_email_tableFilter_is_customer' && ($key == 'local_od_send_email_tableFilter_date_send' || empty($value))) {
+                continue;
+            }
+
+            $arr = explode('_tableFilter_', $key);
+            if (count($arr) != 2) {
+                continue;
+            }
+
+            if ($key == 'od_send_email_tableFilter_is_customer' && $value == '') {
+                continue;
+            }
+
+            if ($fields[$arr[1]] == 'int' && !is_numeric($value)) {
+                $this->filterError[$arr[1]] = $this->l("Error no has introducido los parametros correctos en el campo " . $arr[1]);
+                continue;
+            }
+
+            if ($fields[$arr[1]] == 'array' && (!is_array($value) || (!Validate::isDate($value[0]) && !Validate::isDate($value[1])))) {
+                $this->filterError[$arr[1]] = $this->l("Error no has introducido los parametros correctos en el campo " . $arr[1]);
+                continue;
+            }
+
+            $filter_table_data[] = $this->getWhereCase($fields[$arr[1]] ?? '', $value, $arr[1]);
+        }
+
+        return $filter_table_data;
+    }
 }
