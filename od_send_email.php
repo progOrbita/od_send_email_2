@@ -12,7 +12,7 @@ class Od_send_email extends Module
     private $check_date_error = '';
     private $configTabs;
     private $helperList;
-    private $filterError = [];
+    private $displayErrors = [];
 
     public function __construct()
     {
@@ -372,8 +372,8 @@ class Od_send_email extends Module
     public function displayAdminTpl()
     {
         $err = '';
-        if (!empty($this->filterError)) {
-            foreach ($this->filterError as $key => $value) {
+        if (!empty($this->displayErrors)) {
+            foreach ($this->displayErrors as $key => $value) {
                 $err .= $this->displayError($value);
             }
         }
@@ -618,12 +618,12 @@ class Od_send_email extends Module
             }
 
             if ($fields[$arr[1]] == 'int' && !is_numeric($value)) {
-                $this->filterError[$arr[1]] = $this->l("Error no has introducido los parametros correctos en el campo " . $arr[1]);
+                $this->displayErrors[$arr[1]] = $this->l("Error no has introducido los parametros correctos en el campo " . $arr[1]);
                 continue;
             }
 
             if ($fields[$arr[1]] == 'array' && (!is_array($value) || (!Validate::isDate($value[0]) && !Validate::isDate($value[1])))) {
-                $this->filterError[$arr[1]] = $this->l("Error no has introducido los parametros correctos en el campo " . $arr[1]);
+                $this->displayErrors[$arr[1]] = $this->l("Error no has introducido los parametros correctos en el campo " . $arr[1]);
                 continue;
             }
 
