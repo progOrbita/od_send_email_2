@@ -522,6 +522,12 @@ class Od_send_email extends Module
      */
     private function getData()
     {
+        if (Tools::isSubmit('delete' . $this->name . '_table') && !empty($_GET['id_od_send_email_table'])) {
+            if (ControlMails::delete($_GET['id_od_send_email_table'])) {
+                $this->displayErrors[] = $this->l('Error con intentar elimnar registro db');
+            }
+        }
+
         $where = [];
         if (!Tools::isSubmit('submitReset' . $this->name . '_table')) {
             $where = $this->getFilters();
