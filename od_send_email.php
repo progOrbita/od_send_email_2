@@ -426,6 +426,10 @@ class Od_send_email extends Module
      */
     public function checkDate()
     {
+        if (Configuration::get('_OD_SEND_EMAIL_MAX_MAIL_') < 1) {
+            return false;
+        }
+
         if (empty(Configuration::get('_OD_SEND_EMAIL_LAST_DATE_'))) {
             return true;
         }
