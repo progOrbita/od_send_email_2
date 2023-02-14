@@ -4,6 +4,7 @@ if (!defined('_PS_VERSION_')) {
 }
 
 require_once __DIR__ . '/src/ControlMails.php';
+require_once __DIR__ . '/src/SendEmail.php';
 
 class Od_send_email extends Module
 {
