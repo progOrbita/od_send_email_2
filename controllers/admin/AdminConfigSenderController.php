@@ -1,5 +1,7 @@
 <?php
 
+require_once __DIR__ . '../../../src/ControlMails.php';
+
 class AdminConfigSenderController extends ModuleAdminController
 {
     private $fields_values = [];
