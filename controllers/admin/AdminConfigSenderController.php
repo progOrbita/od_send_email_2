@@ -6,6 +6,14 @@ class AdminConfigSenderController extends ModuleAdminController
     private $configTabs = [];
     private $displayErrors = [];
     private $helperList;
+
+    public function __construct()
+    {
+        $this->bootstrap = true;
+        parent::__construct();
+        $this->fields_values = $this->module->getFields_values();
+    }
+
     public function displayForm()
     {
         $form = [[
