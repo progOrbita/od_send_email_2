@@ -379,8 +379,10 @@ class Od_send_email extends Module
         }
 
         $this->context->smarty->assign([
-            'tabs' => $this->configTabs,
-            'err' => $err
+            'od_send_email' => [
+                'tabs' => $this->configTabs,
+                'err' => $err
+            ]
         ]);
 
         return $this->display(__FILE__, 'od_send_email_config.tpl');
