@@ -52,4 +52,20 @@ class SendEmail
         return true;
     }
 
+    /**
+     * function to send mail to admin when product is out of stock
+     * @param int $lang
+     * @param string $name
+     * @param int $id
+     * 
+     * @return bool
+     */
+    public static function outStock(int $lang, string $name, int $idproduc)
+    {
+        if (!self::sendMail($lang, 'plantillaProducto', 'out of stock', ['{$name}' => $name, '{$id}' => $idproduc], Configuration::get('_OD_SEND_EMAIL_BCC_'))) {
+            return false;
+        }
+
+        return true;
+    }
 }
