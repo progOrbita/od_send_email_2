@@ -67,8 +67,8 @@ class ControlMails
             $whereQuery = ' WHERE ' . implode(' AND ', $where);
         }
 
-        $stquery = ControlMails::buildSelectQuery("employee", "pe", 0);
-        $ndquery = ControlMails::buildSelectQuery("customer", "pc", 1);
+        $stquery = self::buildSelectQuery("employee", "pe", 0);
+        $ndquery = self::buildSelectQuery("customer", "pc", 1);
         $query = 'SELECT a.* FROM(' . $stquery . ' UNION ' . $ndquery . ') as a ' . $whereQuery . ' ORDER BY ' . $orderBy . " " . $orderWay;
         return Db::getInstance()->executeS($query);
     }
