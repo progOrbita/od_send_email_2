@@ -77,6 +77,7 @@ class Od_send_email extends Module
 
     public function getContent()
     {
+        Tools::redirectAdmin($this->context->link->getAdminLink('AdminConfigSender'));
         $this->configTabs = [
             "tab1" => [
                 "class_active" => "active",
