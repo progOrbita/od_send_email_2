@@ -96,6 +96,11 @@ class Od_send_email extends Module
         return $this->postProcess() . $this->displayAdminTpl();
     }
 
+    public function getFields_values()
+    {
+        return $this->fields_values;
+    }
+
     /**
      * Post process
      * 
