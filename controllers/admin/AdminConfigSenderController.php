@@ -2,6 +2,10 @@
 
 class AdminConfigSenderController extends ModuleAdminController
 {
+    private $fields_values = [];
+    private $configTabs = [];
+    private $displayErrors = [];
+    private $helperList;
     public function displayForm()
     {
         $form = [[
