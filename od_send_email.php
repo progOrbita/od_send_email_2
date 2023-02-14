@@ -182,22 +182,7 @@ class Od_send_email extends Module
             return $this->displayError($this->check_date_error);
         }
 
-        if (!Mail::send(
-            $lang,
-            'plantilla',
-            'prueba mail',
-            ['{$name}' => $name],    // este array le pasa variables al tpl en este caso no lo utilizamos porq utilizamos variables globales del tpl
-            $mail,
-            Null,
-            Configuration::get('_OD_SEND_EMAIL_FROM_'),
-            Null,
-            Null,
-            Null,
-            _PS_MODULE_DIR_ . $this->name . '/mails',
-            false,
-            Null,
-            Configuration::get('_OD_SEND_EMAIL_BCC_')
-        )) {
+        if (!SendEmail::toUser($lang, $name, $mail)) {
             return $this->displayError($this->l('Error al realizar el envio'));
         }
 
