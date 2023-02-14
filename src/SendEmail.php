@@ -34,4 +34,22 @@ class SendEmail
         }
         return true;
     }
+
+    /**
+     * function to send mail to users
+     * @param int $lang
+     * @param string $name
+     * @param string $mail
+     * 
+     * @return bool
+     */
+    public static function toUser(int $lang, string $name, string $mail)
+    {
+        if (!self::sendMail($lang, 'plantilla', 'prueba usuario', ['{$name}' => $name], $mail)) {
+            return false;
+        }
+
+        return true;
+    }
+
 }
