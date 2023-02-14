@@ -14,6 +14,49 @@ class AdminConfigSenderController extends ModuleAdminController
         $this->fields_values = $this->module->getFields_values();
     }
 
+    public function initContent()
+    {
+        $this->displayErrors = [];
+        parent::initContent();
+        $err = '';
+        $this->configTabs = [
+            "tab1" => [
+                "class_active" => "active",
+                "class_in" => "in",
+                "id" => "od_send_mail_table",
+                "tittle" => "Tabla Mails",
+                "content" => $this->displayHelperList()
+            ],
+            "tab2" => [
+                "class_active" => "",
+                "class_in" => "",
+                "id" => "od_send_mail_config",
+                "tittle" => "Configuracion del módulo",
+                "content" => $this->displayForm()
+            ]
+        ];
+
+        $content = $this->postProcessForm();
+        if (!empty($this->displayErrors)) {
+            foreach ($this->displayErrors as $key => $value) {
+                $err .= $this->module->displayError($value);
+            }
+        }
+
+        $this->context->smarty->assign([
+            'od_send_email' => [
+                'tabs' => $this->configTabs,
+                'err' => $err
+            ]
+        ]);
+
+        $content .= $this->context->smarty->fetch(_PS_MODULE_DIR_ . '/od_send_email/views/templates/hook/od_send_email_config.tpl');
+
+        $this->context->smarty->assign([
+            'content' => $content
+        ]);
+    }
+
     public function displayForm()
     {
         $form = [[
