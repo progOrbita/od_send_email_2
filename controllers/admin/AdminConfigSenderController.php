@@ -381,15 +381,11 @@ class AdminConfigSenderController extends ModuleAdminController
                 break;
 
             default:
-                $where = '';
-                if ($key != 'firstname') {
-                    $where .= 'a.';
-                } else {
-                    $where .= $key . " LIKE '%" . $value . "%'";
-                    return $where;
+                if ($key == 'firstname') {
+                    return $key . "LIKE '%" . $value . "%'";
                 }
 
-                $where .= $key . "='" . $value . "'";
+                $where = 'a.' . $key . "='" . $value . "'";
         }
 
         return $where;
