@@ -13,8 +13,8 @@ class Od_Send_EmailSenderModuleFrontController extends ModuleFrontController
         $email = $this->validateField('mail');
         $is_customer = Tools::getValue('is_customer') == "true";
 
-        if (!Tools::getIsset('id') && Tools::getValue('id', 0) < 0) {
-            die(json_encode(['result' => $this->module->l("Id incorrecto.")]));
+        if (!Tools::getIsset('id') || Tools::getValue('id', 0) < 0) {
+            die(json_encode(['result' => $this->module->displayError($this->module->l("Id incorrecto."))]));
         }
 
         die(json_encode(['result' => $this->module->mailSender((int) $this->context->language->id, (string) $name, (string) $email, (int) Tools::getValue('id'), (bool) $is_customer)]));
@@ -30,8 +30,13 @@ class Od_Send_EmailSenderModuleFrontController extends ModuleFrontController
         $value = trim(Tools::getValue($param, ''));
 
         if (empty($value)) {
-            die(json_encode(['result' => $this->module->l("Parametro de ajax erroneo: ") . $param]));
+            die(json_encode(['result' => $this->module->displayError($this->module->l("Parametro de ajax erroneo: ") . $param)]));
         }
+
+        if ($param == 'mail' && !Validate::isEmail($value)) {
+            die(json_encode(['result' => $this->module->displayError($this->module->l("Parametro de ajax erroneo: ") . $param)]));
+        }
+
 
         return $value;
     }
