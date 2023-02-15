@@ -17,7 +17,7 @@ class Od_Send_EmailSenderModuleFrontController extends ModuleFrontController
             die(json_encode(['result' => $this->module->l("Id incorrecto.")]));
         }
 
-        die(json_encode(['result' => $this->module->mailSender($this->context->language->id, $name, $email, Tools::getValue('id'), $is_customer)]));
+        die(json_encode(['result' => $this->module->mailSender((int) $this->context->language->id, (string) $name, (string) $email, (int) Tools::getValue('id'), (bool) $is_customer)]));
     }
 
     /**
