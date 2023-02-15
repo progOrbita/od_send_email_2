@@ -18,9 +18,15 @@ $(document).on("click", ".od_sender", function () {
     dataType: "json",
     success: function (response) {
       $(".od_result").remove();
-      $(".od_sender").after(
-        "<div class='od_result'>" + response.result + "</div>"
-      );
+      if (window.is_customer) {
+        $(".od_sender").after(
+          "<div class='od_result'>" + response.result + "</div>"
+        );
+      } else {
+        $(".tab-content").before(
+          "<div class='od_result'>" + response.result + "</div>"
+        );
+      }
     },
   });
 });
