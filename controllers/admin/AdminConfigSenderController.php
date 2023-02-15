@@ -337,12 +337,12 @@ class AdminConfigSenderController extends ModuleAdminController
             }
 
             if ($fields[$arr[1]] == 'int' && !is_numeric($value)) {
-                $this->displayErrors[$arr[1]] = $this->l("Error no has introducido los parametros correctos en el campo " . $arr[1]);
+                $this->displayErrors[] = $this->module->l("Error no has introducido los parametros correctos en el campo " . $arr[1]);
                 continue;
             }
 
             if ($fields[$arr[1]] == 'array' && (!is_array($value) || (!Validate::isDate($value[0]) && !Validate::isDate($value[1])))) {
-                $this->displayErrors[$arr[1]] = $this->l("Error no has introducido los parametros correctos en el campo " . $arr[1]);
+                $this->displayErrors[] = $this->module->l("Error no has introducido los parametros correctos en el campo " . $arr[1]);
                 continue;
             }
 
