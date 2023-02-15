@@ -291,6 +291,7 @@ class Od_send_email extends Module
     public function checkDate()
     {
         if (Configuration::get('_OD_SEND_EMAIL_MAX_MAIL_') < 1) {
+            $this->check_date_error = $this->l('Error no ha configurado un minimo numero de mails');
             return false;
         }
 
