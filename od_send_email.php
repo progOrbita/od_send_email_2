@@ -58,6 +58,7 @@ class Od_send_email extends Module
             && $this->registerHook('actionAdminControllerSetMedia')
             && $this->registerHook('displayCustomerAccount')
             && $this->registerHook('displayCustomerLoginFormAfter')
+            && $this->registerHook('actionUpdateQuantity')
             && empty($this->updateFieldsValue(true))
             && Configuration::updateValue('_OD_SEND_EMAIL_CNT_', 0)
             && Configuration::updateValue('_OD_SEND_EMAIL_LAST_DATE_', '')
