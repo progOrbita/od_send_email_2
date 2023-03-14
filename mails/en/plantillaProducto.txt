@@ -1,0 +1,18 @@
+
+[{shop_url}] 
+
+Hi Admin,
+
+Te has quedado sin stock del producto {$reference}
+Tienes que hacer una compra del producto {$reference}
+
+REFERENCE
+
+{$reference}
+
+PRODUCT
+
+{$name}
+
+{shop_name} [{shop_url}] powered by
+PrestaShop(tm) [http://www.prestashop.com/] 
