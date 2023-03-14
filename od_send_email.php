@@ -354,4 +354,19 @@ class Od_send_email extends Module
         }
         return true;
     }
+
+    public function hookActionUpdateQuantity(array $product)
+    {
+        if ($product['quantity'] > 0) {
+            return;
+        }
+
+        $name = Product::getProductName($product['id_product'], $product['id_product_attribute'], $this->context->language->id);
+        $id_image = Image::getCover($product['id_product']);
+        $image = new Image($id_image['id_image']);
+        $imagePath = _PS_BASE_URL_ . _THEME_PROD_DIR_ . $image->getExistingImgPath() . "-home_default.jpg";
+        $reference = Db::getInstance()->getValue("SELECT `reference` FROM `ps_product` WHERE id_product=" . $product['id_product']);
+        $urlProduct = _PS_BASE_URL_ . $this->context->link->getAdminLink('AdminProducts', true, ['id_product' => $product['id_product']]);
+        SendEmail::outStock((int) $this->context->language->id, $name, $reference, $imagePath, $urlProduct);
+    }
 }
